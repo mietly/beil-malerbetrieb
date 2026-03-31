@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beil Malerbetrieb | Meisterbetrieb seit 1964 | Erding-Eichenkofen</title>
+    <meta name="description" content="Malerbetrieb Beil - Ihr Meisterbetrieb seit 1964 in Erding-Eichenkofen. Malerarbeiten, Bodenbelag, Vollwärmeschutz, Fassadenreinigung und mehr.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1a3a5c;
+            --primary-light: #2a5a8c;
+            --accent: #d4a853;
+            --accent-light: #e8c97a;
+            --dark: #0d1b2a;
+            --light: #f8f6f2;
+            --white: #ffffff;
+            --gray-100: #f5f5f5;
+            --gray-200: #e8e8e8;
+            --gray-300: #d1d1d1;
+            --gray-600: #6b7280;
+            --gray-800: #1f2937;
+            --radius: 16px;
+            --radius-sm: 8px;
+            --shadow: 0 4px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--gray-800);
+            background: var(--light);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        img { max-width: 100%; display: block; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.85);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.4s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 0;
+            box-shadow: 0 2px 40px rgba(0,0,0,0.06);
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-logo img {
+            height: 48px;
+            transition: var(--transition);
+        }
+        .navbar.scrolled .nav-logo img { height: 40px; }
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            transition: var(--transition);
+        }
+        .navbar.scrolled .nav-logo-text { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+        .nav-links a {
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            transition: var(--transition);
+            position: relative;
+        }
+        .navbar.scrolled .nav-links a { color: var(--gray-800); }
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+        }
+        .navbar.scrolled .nav-links a:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .nav-links .nav-cta {
+            background: var(--accent);
+            color: var(--dark) !important;
+            font-weight: 600;
+            padding: 10px 24px;
+        }
+        .nav-links .nav-cta:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+        .nav-toggle span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--white);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .navbar.scrolled .nav-toggle span { background: var(--dark); }
+        .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--dark);
+        }
+        .hero-slider {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease, transform 8s ease;
+            transform: scale(1.05);
+        }
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(13,27,42,0.85) 0%, rgba(26,58,92,0.6) 50%, rgba(13,27,42,0.75) 100%);
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            padding: 120px 0 80px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212,168,83,0.15);
+            border: 1px solid rgba(212,168,83,0.3);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent-light);
+            margin-bottom: 28px;
+            animation: fadeInDown 1s ease 0.2s both;
+        }
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            color: var(--white);
+            margin-bottom: 12px;
+            animation: fadeInUp 1s ease 0.4s both;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 40px;
+            font-weight: 300;
+            max-width: 600px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            cursor: pointer;
+            border: none;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212,168,83,0.35);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            animation: fadeInUp 1s ease 1s both;
+        }
+        .hero-stat h3 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        .hero-stat p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 1.2s both;
+        }
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scroll-bounce 2s infinite;
+        }
+        @keyframes scroll-bounce {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.3; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== SECTION STYLING ===== */
+        section { padding: 120px 0; }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .section-label::before {
+            content: '';
+            width: 32px;
+            height: 2px;
+            background: var(--accent);
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--dark);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        /* ===== ABOUT / HANDWERK SECTION ===== */
+        .about { background: var(--white); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-image-wrapper {
+            position: relative;
+        }
+        .about-image-wrapper img {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            width: 100%;
+        }
+        .about-image-accent {
+            position: absolute;
+            bottom: -24px;
+            right: -24px;
+            width: 200px;
+            height: 200px;
+            border: 3px solid var(--accent);
+            border-radius: var(--radius);
+            z-index: -1;
+        }
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray-600);
+            font-size: 1.05rem;
+        }
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: var(--gray-100);
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .about-feature:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+        .about-feature svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            color: var(--accent);
+        }
+        .about-feature:hover svg { color: var(--accent-light); }
+
+        /* ===== SERVICES / LEISTUNGEN ===== */
+        .services {
+            background: var(--light);
+            position: relative;
+        }
+        .services-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .services-header .section-subtitle { margin: 0 auto; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            transition: all 0.45s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+            cursor: default;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.45s ease;
+        }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gray-200);
+        }
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+        .service-card:hover .service-icon {
+            transform: scale(1.08) rotate(-3deg);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        }
+        .service-icon svg { width: 28px; height: 28px; color: var(--white); }
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        .service-card h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .service-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== QUALITY / QUALITÄT ===== */
+        .quality {
+            background: var(--dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .quality::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,168,83,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .quality .section-title { color: var(--white); }
+        .quality .section-subtitle { color: rgba(255,255,255,0.6); }
+
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 64px;
+        }
+        .quality-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            padding: 36px;
+            text-align: center;
+            transition: all 0.45s ease;
+            backdrop-filter: blur(10px);
+        }
+        .quality-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(212,168,83,0.3);
+            transform: translateY(-6px);
+        }
+        .quality-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin: 0 auto 24px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+        .quality-card:hover img { transform: scale(1.05); }
+        .quality-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--accent-light);
+        }
+        .quality-card p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* ===== UNTERNEHMEN / COMPANY ===== */
+        .company { background: var(--white); }
+        .company-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .company-text .section-subtitle { margin-bottom: 28px; }
+        .company-text p {
+            color: var(--gray-600);
+            margin-bottom: 20px;
+            font-size: 1.02rem;
+        }
+        .company-video-wrapper {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            aspect-ratio: 16/9;
+        }
+        .company-video-wrapper video,
+        .company-video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        /* ===== REFERENZEN ===== */
+        .referenzen { background: var(--light); }
+        .referenzen-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .referenzen-header .section-subtitle { margin: 0 auto; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .gallery-item:hover { transform: scale(1.02); }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13,27,42,0.5) 0%, transparent 60%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .gallery-item:hover::after { opacity: 1; }
+        .gallery-zoom {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+        .gallery-item:hover .gallery-zoom {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gallery-zoom svg { width: 18px; height: 18px; color: var(--dark); }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(20px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active { display: flex; opacity: 1; }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+            animation: lightbox-in 0.4s ease;
+        }
+        @keyframes lightbox-in {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+        .lightbox-close svg { width: 24px; height: 24px; color: var(--white); }
+
+        /* ===== CTA BANNER ===== */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--primary) 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 8s ease infinite;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .cta-banner h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+        .cta-banner p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-banner .btn-primary { font-size: 1.05rem; padding: 18px 42px; }
+
+        /* ===== CONTACT ===== */
+        .contact { background: var(--white); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 64px;
+        }
+        .contact-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 24px;
+            color: var(--dark);
+        }
+        .contact-info p {
+            color: var(--gray-600);
+            margin-bottom: 32px;
+            font-size: 1.02rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .contact-item-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gray-100);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        .contact-item:hover .contact-item-icon {
+            background: var(--accent);
+        }
+        .contact-item-icon svg { width: 22px; height: 22px; color: var(--primary); }
+        .contact-item:hover .contact-item-icon svg { color: var(--white); }
+        .contact-item-text strong {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+            color: var(--dark);
+        }
+        .contact-item-text span, .contact-item-text a {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+        .contact-item-text a:hover { color: var(--accent); }
+        .contact-map {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            min-height: 400px;
+        }
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            border: none;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.6);
+            padding: 80px 0 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 48px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer-brand p {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .footer-brand img { height: 44px; margin-bottom: 8px; }
+        .footer h4 {
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a {
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .footer-links a:hover { color: var(--accent); padding-left: 6px; }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            font-size: 0.8rem;
+        }
+        .footer-bottom a:hover { color: var(--accent); }
+
+        /* ===== FLOATING ELEMENTS ===== */
+        .float-contact {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 900;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-end;
+        }
+        .float-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border: none;
+        }
+        .float-btn:hover { transform: scale(1.1); }
+        .float-phone {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        .float-phone:hover { box-shadow: 0 8px 30px rgba(212,168,83,0.4); }
+        .float-btn svg { width: 24px; height: 24px; }
+
+        /* ===== MARQUEE ===== */
+        .marquee-section {
+            background: var(--dark);
+            padding: 20px 0;
+            overflow: hidden;
+        }
+        .marquee-track {
+            display: flex;
+            gap: 48px;
+            animation: marquee 25s linear infinite;
+            width: max-content;
+        }
+        .marquee-track span {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.12);
+            white-space: nowrap;
+            font-weight: 600;
+        }
+        .marquee-track span.accent-dot {
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== COUNTER ANIMATION ===== */
+        .counter { display: inline-block; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .about-grid, .company-grid { gap: 48px; }
+            .quality-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 80px 0; }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 360px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                padding: 100px 32px 32px;
+                align-items: flex-start;
+                gap: 4px;
+                transition: right 0.4s ease;
+                box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+            }
+            .nav-links.open { right: 0; }
+            .nav-links a {
+                color: var(--gray-800) !important;
+                font-size: 1.05rem;
+                width: 100%;
+                padding: 12px 16px;
+            }
+            .nav-links .nav-cta {
+                margin-top: 16px;
+                text-align: center;
+                justify-content: center;
+            }
+            .nav-toggle { display: flex; }
+
+            .about-grid,
+            .company-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .quality-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-stats { gap: 24px; flex-wrap: wrap; }
+            .about-image-accent { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+            .about-features { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons { flex-direction: column; }
+            .hero-buttons .btn { text-align: center; justify-content: center; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== PAGE PROGRESS BAR ===== */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            z-index: 1001;
+            transition: width 0.1s linear;
+        }
+
+        /* ===== PARALLAX SHAPES ===== */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .shape-1 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(212,168,83,0.06), transparent 70%);
+            top: 20%; right: -100px;
+        }
+        .shape-2 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(26,58,92,0.06), transparent 70%);
+            bottom: 10%; left: -80px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+    <div class="container">
+        <a href="#hero" class="nav-logo">
+            <img src="https://www.beil-malerbetrieb.de/images/malerbetrieb-beil-logo.png" alt="Malerbetrieb Beil Logo">
+            <span class="nav-logo-text">Beil Malerbetrieb</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">Unser Handwerk</a></li>
+            <li><a href="#services">Leistungen</a></li>
+            <li><a href="#company">Unternehmen</a></li>
+            <li><a href="#referenzen">Referenzen</a></li>
+            <li><a href="#contact" class="nav-cta">Kontakt</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+    <div class="hero-slider">
+        <div class="hero-slide active">
+            <img src="https://www.beil-malerbetrieb.de/images/img-slideshow2.jpg" alt="Malerbetrieb Beil Arbeit" loading="eager">
+        </div>
+        <div class="hero-slide">
+            <img src="https://www.beil-malerbetrieb.de/images/img-slideshow3.jpg" alt="Malerbetrieb Beil Projekt" loading="lazy">
+        </div>
+        <div class="hero-slide">
+            <img src="https://www.beil-malerbetrieb.de/images/img-slideshow6.jpg" alt="Fassadenarbeiten" loading="lazy">
+        </div>
+        <div class="hero-slide">
+            <img src="https://www.beil-malerbetrieb.de/images/img-slideshow8.jpg" alt="Innenarbeiten" loading="lazy">
+        </div>
+        <div class="hero-slide">
+            <img src="https://www.beil-malerbetrieb.de/images/img-slideshow11.jpg" alt="Teamarbeit" loading="lazy">
+        </div>
+        <div class="hero-slide">
+            <img src="https://www.beil-malerbetrieb.de/images/teamfoto-slideshow.jpg" alt="Team Beil" loading="lazy">
+        </div>
+        <div class="hero-slide">
+            <img src="https://www.beil-malerbetrieb.de/images/img-slideshow16.jpg" alt="Projekt" loading="lazy">
+        </div>
+        <div class="hero-slide">
+            <img src="https://www.beil-malerbetrieb.de/images/img-slideshow22.jpg" alt="Referenz" loading="lazy">
+        </div>
+        <div class="hero-slide">
+            <img src="https://www.beil-malerbetrieb.de/images/img-slideshow25.jpg" alt="Malerarbeiten" loading="lazy">
+        </div>
+        <div class="hero-slide">
+            <img src="https://www.beil-malerbetrieb.de/images/img-slideshow31.jpg" alt="Fassade" loading="lazy">
+        </div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <div class="hero-badge">Meisterbetrieb seit 1964</div>
+        <h1>aussergewohnlich.<br><span>auffallend anders.</span></h1>
+        <p class="hero-subtitle">Der Leitsatz unseres Malerbetriebs Beil bezieht sich auf unseren hohen Anspruch an Qualitat fur Material und Leistung. Erganzt mit modernen Maler- und Restaurationstechniken.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                Jetzt beraten lassen
+            </a>
+            <a href="#services" class="btn btn-outline">Leistungen entdecken</a>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <h3><span class="counter" data-target="60">0</span>+</h3>
+                <p>Jahre Erfahrung</p>
+            </div>
+            <div class="hero-stat">
+                <h3><span class="counter" data-target="9">0</span></h3>
+                <p>Team-Mitglieder</p>
+            </div>
+            <div class="hero-stat">
+                <h3>Note <span class="counter" data-target="1">0</span>,5</h3>
+                <p>Qualitatsbewertung</p>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-section">
+    <div class="marquee-track">
+        <span>Malerarbeiten</span><span class="accent-dot">&bull;</span>
+        <span>Bodenbelagarbeiten</span><span class="accent-dot">&bull;</span>
+        <span>Vollwarmeschutz</span><span class="accent-dot">&bull;</span>
+        <span>Fassadenreinigung</span><span class="accent-dot">&bull;</span>
+        <span>Tapezierarbeiten</span><span class="accent-dot">&bull;</span>
+        <span>Raumentfeuchtung</span><span class="accent-dot">&bull;</span>
+        <span>Schimmelsanierung</span><span class="accent-dot">&bull;</span>
+        <span>Malerarbeiten</span><span class="accent-dot">&bull;</span>
+        <span>Bodenbelagarbeiten</span><span class="accent-dot">&bull;</span>
+        <span>Vollwarmeschutz</span><span class="accent-dot">&bull;</span>
+        <span>Fassadenreinigung</span><span class="accent-dot">&bull;</span>
+        <span>Tapezierarbeiten</span><span class="accent-dot">&bull;</span>
+        <span>Raumentfeuchtung</span><span class="accent-dot">&bull;</span>
+        <span>Schimmelsanierung</span><span class="accent-dot">&bull;</span>
+    </div>
+</div>
+
+<!-- About Section -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image-wrapper reveal-left">
+                <img src="https://www.beil-malerbetrieb.de/images/teamfoto-slideshow.jpg" alt="Team Malerbetrieb Beil">
+                <div class="about-image-accent"></div>
+            </div>
+            <div class="about-text reveal-right">
+                <span class="section-label">Uber uns</span>
+                <h2 class="section-title">Unser Handwerk</h2>
+                <p class="section-subtitle" style="margin-bottom: 24px;">aussergewohnlich. angenehm. auffallend anders.</p>
+                <p>Der Leitsatz unseres Malerbetriebs Beil bezieht sich naturlich auf unseren hohen Anspruch an Qualitat fur Material und Leistung. Erganzt mit modernen Maler- und Restaurationstechniken, konnen wir Raume und Gebaude einfach auffallend anders gestalten -- und dies stets aussergewohnlich angenehm.</p>
+                <p><strong>Das Maler Beil PLUS:</strong> Als Team und als Fachkrafte arbeiten wir nicht fur Wande und Mauern, sondern immer fur Menschen. Deshalb bieten wir Vor- und Nacharbeiten zu unserer eigentlichen Dienstleistung wie ausraumen und saubern einfach und gerne mit an.</p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                        Personlich
+                    </div>
+                    <div class="about-feature">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                        Punktlich
+                    </div>
+                    <div class="about-feature">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                        Perfekt
+                    </div>
+                    <div class="about-feature">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                        Umweltfreundlich
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="services-header reveal">
+            <span class="section-label">Leistungsspektrum</span>
+            <h2 class="section-title">Wohnen gestalten. Werte erhalten.</h2>
+            <p class="section-subtitle">Obwohl wir als Malerbetrieb firmieren, bieten wir heute vielfaltige und umfassende Leistungen rund um die Gestaltung von Wohnungen und Hausern an.</p>
+        </div>
+        <div class="services-grid">
+            <!-- Malerarbeiten -->
+            <div class="service-card reveal" style="transition-delay: 0.05s;">
+                <div class="service-icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z"/><path d="M12 8v8M8 12h8"/></svg>
+                </div>
+                <h3>Malerarbeiten</h3>
+                <h4>Frische Farbe. Innen und Aussen.</h4>
+                <p>Ob klassisch oder modern, schlicht oder extravagant: ganz nach Ihren Wunschen und Anspruchen bringen wir die richtige Farbe in Ihr Zuhause. Aussen- und Fassadenanstriche fuhren wir ebenso sauber und kompetent aus wie samtliche Innenstriche.</p>
+            </div>
+            <!-- Bodenbelag -->
+            <div class="service-card reveal" style="transition-delay: 0.1s;">
+                <div class="service-icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+                </div>
+                <h3>Bodenbelagarbeiten</h3>
+                <h4>Fachgerecht verlegt geht es sich einfach besser.</h4>
+                <p>Vom Teppich uber PVC bis hin zu Fertigparkett verlegen wir die Boden Ihrer Wahl fachmannisch, passgenau und unter Verwendung umweltfreundlicher und losungsmittelfreier Klebstoffe.</p>
+            </div>
+            <!-- Vollwärmeschutz -->
+            <div class="service-card reveal" style="transition-delay: 0.15s;">
+                <div class="service-icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                </div>
+                <h3>Vollwarmeschutz</h3>
+                <h4>Warme dammen. Energie sparen.</h4>
+                <p>Mit Vollwarmeschutz kann sich bei Ein- oder Zweifamilienhausern eine Heizkosten-Ersparnis von bis zu 60 % ergeben. Wir verarbeiten ausschliesslich das Brillux Qiu-System mit Nut und Feder.</p>
+            </div>
+            <!-- Fassadenreinigung -->
+            <div class="service-card reveal" style="transition-delay: 0.2s;">
+                <div class="service-icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"><path d="M12 3v18M3 12l9-9 9 9"/></svg>
+                </div>
+                <h3>Fassadenreinigung</h3>
+                <h4>Fur Sie bewahren wir eine schone Fassade.</h4>
+                <p>Mit unseren leistungsstarken Hochdruckreinigungsgeraten machen wir verschmutze Fassaden wieder schon sauber -- das sowohl mit kaltem wie warmem Wasser.</p>
+            </div>
+            <!-- Tapezierarbeiten -->
+            <div class="service-card reveal" style="transition-delay: 0.25s;">
+                <div class="service-icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"><path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z"/></svg>
+                </div>
+                <h3>Tapezierarbeiten</h3>
+                <h4>Akzente mit Mustern. Effekte durch Strukturen.</h4>
+                <p>Ob Raufaser, Glasgewebe-, Muster-, Textil-, Vlies- oder Relieftapete - wir beraten, liefern und tapezieren Ihre Raume sauber und fachgerecht.</p>
+            </div>
+            <!-- Schimmelsanierung -->
+            <div class="service-card reveal" style="transition-delay: 0.3s;">
+                <div class="service-icon">
+                    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <h3>Schimmel &amp; Feuchtigkeit</h3>
+                <h4>Endlich Schluss mit Schimmel.</h4>
+                <p>Als Fachbetrieb fur Schimmelsanierung beseitigen wir den Schimmel von der Analyse bis hin zur fachgerechten Austrocknung der Raume. Schnelle Hilfe bei Raumentfeuchtung inklusive.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quality Section -->
+<section class="quality" id="quality">
+    <div class="container">
+        <div class="reveal" style="text-align: center; margin-bottom: 48px;">
+            <span class="section-label">Auszeichnungen</span>
+            <h2 class="section-title" style="color: #fff;">Anspruch an Qualitat</h2>
+            <p class="section-subtitle" style="margin: 0 auto; color: rgba(255,255,255,0.6);">Service bedeutet fur unseren Malerbetrieb Beil, dass wir Ihnen das Leben etwas schoner machen wollen -- und zwar mit frischen Farben, einer individuellen Beratung und einem freundlichen Miteinander.</p>
+        </div>
+        <div class="quality-grid">
+            <div class="quality-card reveal-scale" style="transition-delay: 0.1s;">
+                <img src="https://www.beil-malerbetrieb.de/images/Deutsch_UBA_Siegel_2022_300%20dpi.jpg" alt="Ausgezeichnetes Unternehmen">
+                <h4>Wir sind ausgezeichnet worden</h4>
+                <p>Als Unternehmen, die auf herausragende Art und Weise Beschaftigte im Verfahren der Anerkennung ihrer auslandischen Berufsabschlusse unterstutzen, Vielfalt schatzen und die Mitarbeiterqualifizierung stetig vorantreiben.</p>
+            </div>
+            <div class="quality-card reveal-scale" style="transition-delay: 0.2s;">
+                <img src="https://www.beil-malerbetrieb.de/images/210205_qih-DigitalerAufkleber_Beil.png" alt="QIH Qualitatssiegel">
+                <h4>Wieder ausgezeichnet mit der Bestnote 1,5!</h4>
+                <p>Seit mehr als 10 Jahren nehmen wir immer wieder an dem qih-Qualitatssiegelverfahren teil. Das Ergebnis kann sich sehen lassen.</p>
+            </div>
+            <div class="quality-card reveal-scale" style="transition-delay: 0.3s;">
+                <img src="https://www.beil-malerbetrieb.de/images/aktion_wintermaler.png" alt="Aktion Wintermaler">
+                <h4>Jetzt 500 Euro gewinnen!</h4>
+                <p>Wer die kalte Jahreszeit nutzt, um einen Auftrag an einen der teilnehmenden Innungsbetriebe zu erteilen, hat die Chance 500 Euro als Zuschuss zu den Malerarbeiten zu gewinnen.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Company Section -->
+<section class="company" id="company">
+    <div class="container">
+        <div class="company-grid">
+            <div class="company-text reveal-left">
+                <span class="section-label">Unternehmen</span>
+                <h2 class="section-title">Bodenstandig. Bewahrt. Besonders.</h2>
+                <p class="section-subtitle">Tradition und Moderne seit 1964</p>
+                <p>Seit uber 40 Jahren gibt in der Familie und im Malerbetrieb Beil die Farbe den Ton an. Der Weg vom stilvollen Gemalde in Ol bis hin zur Fassadensanierung mit Vollwarmeschutz war und ist mit grosser Leidenschaft zum Malerhandwerk und mit einem verantwortungsbewussten Unternehmersinn gepflastert.</p>
+                <p>Mit Teamgeist, einer klaren Kundenorientierung, der richtigen Neugier und dem passenden Mut wurde von der Grundung an bewahrtes Handwerk mit modernen Moglichkeiten verbunden.</p>
+                <p>Seit 1999 leitet Jurgen Beil mit seiner Frau Claudia den Malerbetrieb Beil. Qualitat, Kundennahe und das tagliche Streben nach Kundenzufriedenheit zeichnen den Meisterbetrieb Beil ebenso aus wie regelmassige Qualifizierungen und Schulungen aller Mitarbeiter.</p>
+                <p><strong>Fur unsere Umwelt bekennen wir Farbe:</strong> Bei unseren Arbeiten kommen ausnahmslos hochwertige, schadstoffarme, geruchsfreundliche und moglichst umweltschonende Farben und Lacke bekannter Hersteller und Marken zum Einsatz.</p>
+            </div>
+            <div class="company-video-wrapper reveal-right">
+                <video poster="https://www.beil-malerbetrieb.de/videos/poster-anstrich.jpg" controls preload="none">
+                    <source src="https://www.beil-malerbetrieb.de/videos/Beil-Werbefilm-Anstricharbeiten-Opti-Maler-Partner.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-banner">
+    <div class="container reveal">
+        <h2>Personlich. Punktlich. Perfekt.</h2>
+        <p>Wir wissen was Sie wollen: einfach saubere Arbeit. Genau diese liefern wir Ihnen gerne, auf Wunsch sogar inklusive dem Ein- und Ausraumen.</p>
+        <a href="tel:+4981221594" class="btn btn-primary">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            +49 8122 - 15942
+        </a>
+    </div>
+</section>
+
+<!-- Referenzen -->
+<section class="referenzen" id="referenzen">
+    <div class="container">
+        <div class="referenzen-header reveal">
+            <span class="section-label">Portfolio</span>
+            <h2 class="section-title">Unsere Referenzen</h2>
+            <p class="section-subtitle">Uberzeugen Sie sich selbst von unserer Arbeit. Hier eine Auswahl unserer Projekte.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item reveal-scale" style="transition-delay:0.05s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz1.jpg" alt="Referenz 1" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.08s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz2.jpg" alt="Referenz 2" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.11s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz3.jpg" alt="Referenz 3" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.14s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz5.jpg" alt="Referenz 5" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.17s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz6.jpg" alt="Referenz 6" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.2s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz7.jpg" alt="Referenz 7" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.23s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz8.jpg" alt="Referenz 8" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.26s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz10.jpg" alt="Referenz 10" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.29s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz12.jpg" alt="Referenz 12" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.32s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz15.jpg" alt="Referenz 15" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.35s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz20.jpg" alt="Referenz 20" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+            <div class="gallery-item reveal-scale" style="transition-delay:0.38s" onclick="openLightbox(this)">
+                <img src="https://www.beil-malerbetrieb.de/referenzen/referenz25.jpg" alt="Referenz 25" loading="lazy">
+                <div class="gallery-zoom"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info reveal-left">
+                <span class="section-label">Kontakt</span>
+                <h3>Wir sind fur Sie da</h3>
+                <p>Nehmen Sie Kontakt mit uns auf. Wir freuen uns auf Ihre Anfrage und beraten Sie gerne personlich.</p>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <div class="contact-item-text">
+                        <strong>Adresse</strong>
+                        <span>Malerbetrieb Beil<br>Kreuzstrasse 17<br>85435 Erding-Eichenkofen</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    </div>
+                    <div class="contact-item-text">
+                        <strong>Telefon</strong>
+                        <a href="tel:+4981221594">+49 8122 - 15942</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <div class="contact-item-text">
+                        <strong>E-Mail</strong>
+                        <a href="mailto:info@beil-malerbetrieb.de">info@beil-malerbetrieb.de</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">
+                        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/></svg>
+                    </div>
+                    <div class="contact-item-text">
+                        <strong>Fax</strong>
+                        <span>+49 8122 - 189968</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-map reveal-right">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2662.5!2d11.897!3d48.295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e0a!2sMalerbetrieb+Beil!5e0!3m2!1sde!2sde!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Malerbetrieb Beil Standort"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="https://www.beil-malerbetrieb.de/images/malerbetrieb-beil-logo.png" alt="Malerbetrieb Beil">
+                <p>aussergewohnlich angenehm auffallend anders ... als alle anderen. Meisterbetrieb seit 1964 in Erding-Eichenkofen.</p>
+            </div>
+            <div>
+                <h4>Leistungen</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">Malerarbeiten</a></li>
+                    <li><a href="#services">Bodenbelagarbeiten</a></li>
+                    <li><a href="#services">Vollwarmeschutz</a></li>
+                    <li><a href="#services">Fassadenreinigung</a></li>
+                    <li><a href="#services">Tapezierarbeiten</a></li>
+                    <li><a href="#services">Schimmelsanierung</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Unternehmen</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">Unser Handwerk</a></li>
+                    <li><a href="#company">Tradition & Moderne</a></li>
+                    <li><a href="#quality">Qualitat & Image</a></li>
+                    <li><a href="#referenzen">Referenzen</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Kontakt</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:+4981221594">+49 8122 - 15942</a></li>
+                    <li><a href="mailto:info@beil-malerbetrieb.de">info@beil-malerbetrieb.de</a></li>
+                    <li>Kreuzstrasse 17</li>
+                    <li>85435 Erding-Eichenkofen</li>
+                </ul>
+                <div style="margin-top: 20px; display: flex; gap: 12px;">
+                    <a href="https://www.facebook.com/497054197038336" target="_blank" rel="noopener" aria-label="Facebook" style="width: 40px; height: 40px; background: rgba(255,255,255,0.06); border-radius: 10px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                        <svg width="18" height="18" fill="rgba(255,255,255,0.6)" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2024 Malerbetrieb Beil, Jurgen Beil. Alle Rechte vorbehalten.</span>
+            <div style="display: flex; gap: 24px;">
+                <a href="https://www.beil-malerbetrieb.de/impressum.php">Impressum</a>
+                <a href="https://www.beil-malerbetrieb.de/datenschutz.php">Datenschutz</a>
+                <a href="https://www.opti-maler-partner.de/" target="_blank" rel="noopener">Opti-Maler-Partner</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <img src="" alt="Referenz Grossansicht" id="lightboxImg">
+</div>
+
+<!-- Floating Contact -->
+<div class="float-contact">
+    <a href="tel:+4981221594" class="float-btn float-phone" aria-label="Anrufen">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    </a>
+</div>
+
+<script>
+// ===== NAVBAR SCROLL =====
+const navbar = document.getElementById('navbar');
+const progressBar = document.getElementById('progressBar');
+
+window.addEventListener('scroll', () => {
+    // Navbar
+    if (window.scrollY > 80) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+
+    // Progress bar
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    progressBar.style.width = (winScroll / height * 100) + '%';
+});
+
+// ===== MOBILE MENU =====
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('open');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('open');
+    });
+});
+
+// ===== HERO SLIDER =====
+const slides = document.querySelectorAll('.hero-slide');
+let currentSlide = 0;
+
+function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+
+setInterval(nextSlide, 5000);
+
+// ===== SCROLL REVEAL =====
+const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+
+// ===== COUNTER ANIMATION =====
+const counters = document.querySelectorAll('.counter');
+
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = +counter.dataset.target;
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const update = () => {
+                current += step;
+                if (current < target) {
+                    counter.textContent = Math.floor(current);
+                    requestAnimationFrame(update);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            update();
+            counterObserver.unobserve(counter);
+        }
+    });
+}, { threshold: 0.5 });
+
+counters.forEach(c => counterObserver.observe(c));
+
+// ===== LIGHTBOX =====
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+
+function openLightbox(el) {
+    const img = el.querySelector('img');
+    lightboxImg.src = img.src;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
